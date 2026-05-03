@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lex Et Justitia - AI Counsel</title>
+    
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <style>
+        body { background: #0a0a0a; color: #e0d5b1; font-family: serif; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
+        .chat-card { background: rgba(15, 15, 15, 0.9); padding: 40px; border: 1px solid #3a3a3a; width: 650px; text-align: center; backdrop-filter: blur(10px); }
+        h1 { color: #c5a059; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 20px; }
+        #chat-window { height: 300px; overflow-y: auto; border-bottom: 1px solid #333; margin-bottom: 20px; text-align: left; padding: 10px; }
+        .user-msg { color: #fff; margin: 10px 0; }
+        .agent-msg { color: #c5a059; margin: 10px 0; border-left: 2px solid #c5a059; padding-left: 10px; }
+        input { width: 100%; padding: 12px; background: #111; border: 1px solid #c5a059; color: #d4af37; margin-top: 10px; }
+        button { width: 20%; padding: 12px; background: rgba(197, 160, 89, 0.1); border: 1px solid #c5a059; color: #c5a059; cursor: pointer; margin-top: 10px; text-transform: uppercase; }
+        .htmx-indicator { display: none; color: #888; font-style: italic; }
+        .htmx-request .htmx-indicator { display: block; }
+    </style>
+</head>
+<body>
+    <div class="chat-card">
+        <h1>Legal AI</h1>
+        <div id="chat-window">
+            <div class="agent-msg">The scales are balanced. Present your case.</div>
+        </div>
+        
+        <form hx-post="/ask_agent" 
+              hx-target="#chat-window" 
+              hx-swap="beforeend" 
+              hx-indicator="#loading"
+              hx-on::after-request="this.reset()">
+            
+            
+            <input type="text" name="prompt" placeholder="Describe the incident..." required>
+            
+            <button type="submit">Consult the Scales</button>
+            <div id="loading" class="htmx-indicator">The agent is thinking...</div>
+        </form>
+    </div>
+</body>
+</html>

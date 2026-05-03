@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lex Et Justitia - Access</title>
+    <script src="https://unpkg.com/htmx.org@1.9.10"></script>
+    <style>
+        body { margin: 0; padding: 0; background-color: #0a0a0a; color: #e0d5b1; font-family: 'Georgia', serif; display: flex; justify-content: center; align-items: center; height: 100vh; overflow: hidden; }
+        .auth-card { background: rgba(15, 15, 15, 0.9); padding: 50px 40px; border: 1px solid #3a3a3a; box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5); width: 100%; max-width: 400px; text-align: center; backdrop-filter: blur(10px); }
+        h1 { font-size: 1.8rem; letter-spacing: 5px; text-transform: uppercase; margin-bottom: 30px; color: #c5a059; font-weight: 300; border-bottom: 1px solid #c5a059; padding-bottom: 10px; }
+        input { width: 100%; padding: 12px; margin-bottom: 15px; background: #111; border: 1px solid #3a3a3a; color: #d4af37; font-size: 0.9rem; }
+        input:focus { border-color: #c5a059; outline: none; }
+        .btn { width: 100%; padding: 15px; border: 1px solid #c5a059; background: rgba(197, 160, 89, 0.1); color: #c5a059; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; transition: 0.3s; }
+        .btn:hover { background: #c5a059; color: #0d0d0d; }
+        .toggle-link { margin-top: 20px; font-size: 0.8rem; color: #888; text-decoration: underline; cursor: pointer; display: block; }
+        .toggle-link:hover { color: #c5a059; }
+    </style>
+</head>
+<body>
+    <div class="auth-card" id="auth-container">
+        <!-- Initial view is Login -->
+        <h1>Log In</h1>
+        <form hx-post="/user/login" hx-target="#auth-container">
+            <input type="text" name="username" placeholder="Username" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit" class="btn">Enter the Portal</button>
+        </form>
+        <span class="toggle-link" hx-get="/user/register" hx-target="#auth-container">
+            Need to register? Create an account
+        </span>
+    </div>
+</body>
+</html>
