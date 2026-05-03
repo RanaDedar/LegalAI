@@ -45,7 +45,7 @@ def main() -> None:
     package_root = Path(__file__).resolve().parent
     uvicorn.run(
         "legalaid.main:app",
-        host="127.0.0.1",
+        host="0.0.0.0",
         port=8000,
         reload=True,
         reload_dirs=[str(package_root)],
