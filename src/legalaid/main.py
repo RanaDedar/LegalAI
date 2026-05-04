@@ -4,7 +4,6 @@ from pathlib import Path
 from fastapi import FastAPI
 from fastapi.responses import RedirectResponse
 from starlette.middleware.sessions import SessionMiddleware
-
 from legalaid.chat import models as chat_models  
 from legalaid.chat.routes import chat_router
 from legalaid.database.db import Base, engine, ensure_postgres_database
@@ -45,7 +44,7 @@ def main() -> None:
     package_root = Path(__file__).resolve().parent
     uvicorn.run(
         "legalaid.main:app",
-        host="0.0.0.0",
+        host="127.0.0.1",
         port=8000,
         reload=True,
         reload_dirs=[str(package_root)],
